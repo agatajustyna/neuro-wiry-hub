@@ -9,68 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ZmyslyRouteImport } from './routes/zmysly'
-import { Route as UkladRuchowyRouteImport } from './routes/uklad-ruchowy'
-import { Route as UkladPozapiramidowyRouteImport } from './routes/uklad-pozapiramidowy'
-import { Route as UkladNerwowyAutonomicznyRouteImport } from './routes/uklad-nerwowy-autonomiczny'
-import { Route as UkladLimbicznyRouteImport } from './routes/uklad-limbiczny'
-import { Route as UkladCzuciowyRouteImport } from './routes/uklad-czuciowy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as RdzenKregowyRouteImport } from './routes/rdzen-kregowy'
 import { Route as QuizRouteImport } from './routes/quiz'
-import { Route as PienMozguRouteImport } from './routes/pien-mozgu'
-import { Route as OgolneRouteImport } from './routes/ogolne'
-import { Route as NerwyCzaszkoweRouteImport } from './routes/nerwy-czaszkowe'
-import { Route as MozgowieIRdzenNerwowyRouteImport } from './routes/mozgowie-i-rdzen-nerwowy'
-import { Route as MozdzekRouteImport } from './routes/mozdzek'
-import { Route as MiedzymozgowieRouteImport } from './routes/miedzymozgowie'
-import { Route as KresomozgowieRouteImport } from './routes/kresomozgowie'
-import { Route as KomoryMozguRouteImport } from './routes/komory-mozgu'
-import { Route as JadraPodstawyRouteImport } from './routes/jadra-podstawy'
-import { Route as IstotaBialaRouteImport } from './routes/istota-biala'
-import { Route as DrogiNerwoweRouteImport } from './routes/drogi-nerwowe'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CategorySubcategoryRouteImport } from './routes/$category.$subcategory'
 
-const ZmyslyRoute = ZmyslyRouteImport.update({
-  id: '/zmysly',
-  path: '/zmysly',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UkladRuchowyRoute = UkladRuchowyRouteImport.update({
-  id: '/uklad-ruchowy',
-  path: '/uklad-ruchowy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UkladPozapiramidowyRoute = UkladPozapiramidowyRouteImport.update({
-  id: '/uklad-pozapiramidowy',
-  path: '/uklad-pozapiramidowy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UkladNerwowyAutonomicznyRoute =
-  UkladNerwowyAutonomicznyRouteImport.update({
-    id: '/uklad-nerwowy-autonomiczny',
-    path: '/uklad-nerwowy-autonomiczny',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const UkladLimbicznyRoute = UkladLimbicznyRouteImport.update({
-  id: '/uklad-limbiczny',
-  path: '/uklad-limbiczny',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UkladCzuciowyRoute = UkladCzuciowyRouteImport.update({
-  id: '/uklad-czuciowy',
-  path: '/uklad-czuciowy',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RdzenKregowyRoute = RdzenKregowyRouteImport.update({
-  id: '/rdzen-kregowy',
-  path: '/rdzen-kregowy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuizRoute = QuizRouteImport.update({
@@ -78,301 +23,49 @@ const QuizRoute = QuizRouteImport.update({
   path: '/quiz',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PienMozguRoute = PienMozguRouteImport.update({
-  id: '/pien-mozgu',
-  path: '/pien-mozgu',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OgolneRoute = OgolneRouteImport.update({
-  id: '/ogolne',
-  path: '/ogolne',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NerwyCzaszkoweRoute = NerwyCzaszkoweRouteImport.update({
-  id: '/nerwy-czaszkowe',
-  path: '/nerwy-czaszkowe',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MozgowieIRdzenNerwowyRoute = MozgowieIRdzenNerwowyRouteImport.update({
-  id: '/mozgowie-i-rdzen-nerwowy',
-  path: '/mozgowie-i-rdzen-nerwowy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MozdzekRoute = MozdzekRouteImport.update({
-  id: '/mozdzek',
-  path: '/mozdzek',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MiedzymozgowieRoute = MiedzymozgowieRouteImport.update({
-  id: '/miedzymozgowie',
-  path: '/miedzymozgowie',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KresomozgowieRoute = KresomozgowieRouteImport.update({
-  id: '/kresomozgowie',
-  path: '/kresomozgowie',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KomoryMozguRoute = KomoryMozguRouteImport.update({
-  id: '/komory-mozgu',
-  path: '/komory-mozgu',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JadraPodstawyRoute = JadraPodstawyRouteImport.update({
-  id: '/jadra-podstawy',
-  path: '/jadra-podstawy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IstotaBialaRoute = IstotaBialaRouteImport.update({
-  id: '/istota-biala',
-  path: '/istota-biala',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DrogiNerwoweRoute = DrogiNerwoweRouteImport.update({
-  id: '/drogi-nerwowe',
-  path: '/drogi-nerwowe',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CategorySubcategoryRoute = CategorySubcategoryRouteImport.update({
-  id: '/$category/$subcategory',
-  path: '/$category/$subcategory',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/drogi-nerwowe': typeof DrogiNerwoweRoute
-  '/istota-biala': typeof IstotaBialaRoute
-  '/jadra-podstawy': typeof JadraPodstawyRoute
-  '/komory-mozgu': typeof KomoryMozguRoute
-  '/kresomozgowie': typeof KresomozgowieRoute
-  '/miedzymozgowie': typeof MiedzymozgowieRoute
-  '/mozdzek': typeof MozdzekRoute
-  '/mozgowie-i-rdzen-nerwowy': typeof MozgowieIRdzenNerwowyRoute
-  '/nerwy-czaszkowe': typeof NerwyCzaszkoweRoute
-  '/ogolne': typeof OgolneRoute
-  '/pien-mozgu': typeof PienMozguRoute
   '/quiz': typeof QuizRoute
-  '/rdzen-kregowy': typeof RdzenKregowyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/uklad-czuciowy': typeof UkladCzuciowyRoute
-  '/uklad-limbiczny': typeof UkladLimbicznyRoute
-  '/uklad-nerwowy-autonomiczny': typeof UkladNerwowyAutonomicznyRoute
-  '/uklad-pozapiramidowy': typeof UkladPozapiramidowyRoute
-  '/uklad-ruchowy': typeof UkladRuchowyRoute
-  '/zmysly': typeof ZmyslyRoute
-  '/$category/$subcategory': typeof CategorySubcategoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/drogi-nerwowe': typeof DrogiNerwoweRoute
-  '/istota-biala': typeof IstotaBialaRoute
-  '/jadra-podstawy': typeof JadraPodstawyRoute
-  '/komory-mozgu': typeof KomoryMozguRoute
-  '/kresomozgowie': typeof KresomozgowieRoute
-  '/miedzymozgowie': typeof MiedzymozgowieRoute
-  '/mozdzek': typeof MozdzekRoute
-  '/mozgowie-i-rdzen-nerwowy': typeof MozgowieIRdzenNerwowyRoute
-  '/nerwy-czaszkowe': typeof NerwyCzaszkoweRoute
-  '/ogolne': typeof OgolneRoute
-  '/pien-mozgu': typeof PienMozguRoute
   '/quiz': typeof QuizRoute
-  '/rdzen-kregowy': typeof RdzenKregowyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/uklad-czuciowy': typeof UkladCzuciowyRoute
-  '/uklad-limbiczny': typeof UkladLimbicznyRoute
-  '/uklad-nerwowy-autonomiczny': typeof UkladNerwowyAutonomicznyRoute
-  '/uklad-pozapiramidowy': typeof UkladPozapiramidowyRoute
-  '/uklad-ruchowy': typeof UkladRuchowyRoute
-  '/zmysly': typeof ZmyslyRoute
-  '/$category/$subcategory': typeof CategorySubcategoryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/drogi-nerwowe': typeof DrogiNerwoweRoute
-  '/istota-biala': typeof IstotaBialaRoute
-  '/jadra-podstawy': typeof JadraPodstawyRoute
-  '/komory-mozgu': typeof KomoryMozguRoute
-  '/kresomozgowie': typeof KresomozgowieRoute
-  '/miedzymozgowie': typeof MiedzymozgowieRoute
-  '/mozdzek': typeof MozdzekRoute
-  '/mozgowie-i-rdzen-nerwowy': typeof MozgowieIRdzenNerwowyRoute
-  '/nerwy-czaszkowe': typeof NerwyCzaszkoweRoute
-  '/ogolne': typeof OgolneRoute
-  '/pien-mozgu': typeof PienMozguRoute
   '/quiz': typeof QuizRoute
-  '/rdzen-kregowy': typeof RdzenKregowyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/uklad-czuciowy': typeof UkladCzuciowyRoute
-  '/uklad-limbiczny': typeof UkladLimbicznyRoute
-  '/uklad-nerwowy-autonomiczny': typeof UkladNerwowyAutonomicznyRoute
-  '/uklad-pozapiramidowy': typeof UkladPozapiramidowyRoute
-  '/uklad-ruchowy': typeof UkladRuchowyRoute
-  '/zmysly': typeof ZmyslyRoute
-  '/$category/$subcategory': typeof CategorySubcategoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/drogi-nerwowe'
-    | '/istota-biala'
-    | '/jadra-podstawy'
-    | '/komory-mozgu'
-    | '/kresomozgowie'
-    | '/miedzymozgowie'
-    | '/mozdzek'
-    | '/mozgowie-i-rdzen-nerwowy'
-    | '/nerwy-czaszkowe'
-    | '/ogolne'
-    | '/pien-mozgu'
-    | '/quiz'
-    | '/rdzen-kregowy'
-    | '/sitemap.xml'
-    | '/uklad-czuciowy'
-    | '/uklad-limbiczny'
-    | '/uklad-nerwowy-autonomiczny'
-    | '/uklad-pozapiramidowy'
-    | '/uklad-ruchowy'
-    | '/zmysly'
-    | '/$category/$subcategory'
+  fullPaths: '/' | '/quiz' | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/drogi-nerwowe'
-    | '/istota-biala'
-    | '/jadra-podstawy'
-    | '/komory-mozgu'
-    | '/kresomozgowie'
-    | '/miedzymozgowie'
-    | '/mozdzek'
-    | '/mozgowie-i-rdzen-nerwowy'
-    | '/nerwy-czaszkowe'
-    | '/ogolne'
-    | '/pien-mozgu'
-    | '/quiz'
-    | '/rdzen-kregowy'
-    | '/sitemap.xml'
-    | '/uklad-czuciowy'
-    | '/uklad-limbiczny'
-    | '/uklad-nerwowy-autonomiczny'
-    | '/uklad-pozapiramidowy'
-    | '/uklad-ruchowy'
-    | '/zmysly'
-    | '/$category/$subcategory'
-  id:
-    | '__root__'
-    | '/'
-    | '/drogi-nerwowe'
-    | '/istota-biala'
-    | '/jadra-podstawy'
-    | '/komory-mozgu'
-    | '/kresomozgowie'
-    | '/miedzymozgowie'
-    | '/mozdzek'
-    | '/mozgowie-i-rdzen-nerwowy'
-    | '/nerwy-czaszkowe'
-    | '/ogolne'
-    | '/pien-mozgu'
-    | '/quiz'
-    | '/rdzen-kregowy'
-    | '/sitemap.xml'
-    | '/uklad-czuciowy'
-    | '/uklad-limbiczny'
-    | '/uklad-nerwowy-autonomiczny'
-    | '/uklad-pozapiramidowy'
-    | '/uklad-ruchowy'
-    | '/zmysly'
-    | '/$category/$subcategory'
+  to: '/' | '/quiz' | '/sitemap.xml'
+  id: '__root__' | '/' | '/quiz' | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DrogiNerwoweRoute: typeof DrogiNerwoweRoute
-  IstotaBialaRoute: typeof IstotaBialaRoute
-  JadraPodstawyRoute: typeof JadraPodstawyRoute
-  KomoryMozguRoute: typeof KomoryMozguRoute
-  KresomozgowieRoute: typeof KresomozgowieRoute
-  MiedzymozgowieRoute: typeof MiedzymozgowieRoute
-  MozdzekRoute: typeof MozdzekRoute
-  MozgowieIRdzenNerwowyRoute: typeof MozgowieIRdzenNerwowyRoute
-  NerwyCzaszkoweRoute: typeof NerwyCzaszkoweRoute
-  OgolneRoute: typeof OgolneRoute
-  PienMozguRoute: typeof PienMozguRoute
   QuizRoute: typeof QuizRoute
-  RdzenKregowyRoute: typeof RdzenKregowyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  UkladCzuciowyRoute: typeof UkladCzuciowyRoute
-  UkladLimbicznyRoute: typeof UkladLimbicznyRoute
-  UkladNerwowyAutonomicznyRoute: typeof UkladNerwowyAutonomicznyRoute
-  UkladPozapiramidowyRoute: typeof UkladPozapiramidowyRoute
-  UkladRuchowyRoute: typeof UkladRuchowyRoute
-  ZmyslyRoute: typeof ZmyslyRoute
-  CategorySubcategoryRoute: typeof CategorySubcategoryRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/zmysly': {
-      id: '/zmysly'
-      path: '/zmysly'
-      fullPath: '/zmysly'
-      preLoaderRoute: typeof ZmyslyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/uklad-ruchowy': {
-      id: '/uklad-ruchowy'
-      path: '/uklad-ruchowy'
-      fullPath: '/uklad-ruchowy'
-      preLoaderRoute: typeof UkladRuchowyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/uklad-pozapiramidowy': {
-      id: '/uklad-pozapiramidowy'
-      path: '/uklad-pozapiramidowy'
-      fullPath: '/uklad-pozapiramidowy'
-      preLoaderRoute: typeof UkladPozapiramidowyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/uklad-nerwowy-autonomiczny': {
-      id: '/uklad-nerwowy-autonomiczny'
-      path: '/uklad-nerwowy-autonomiczny'
-      fullPath: '/uklad-nerwowy-autonomiczny'
-      preLoaderRoute: typeof UkladNerwowyAutonomicznyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/uklad-limbiczny': {
-      id: '/uklad-limbiczny'
-      path: '/uklad-limbiczny'
-      fullPath: '/uklad-limbiczny'
-      preLoaderRoute: typeof UkladLimbicznyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/uklad-czuciowy': {
-      id: '/uklad-czuciowy'
-      path: '/uklad-czuciowy'
-      fullPath: '/uklad-czuciowy'
-      preLoaderRoute: typeof UkladCzuciowyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/rdzen-kregowy': {
-      id: '/rdzen-kregowy'
-      path: '/rdzen-kregowy'
-      fullPath: '/rdzen-kregowy'
-      preLoaderRoute: typeof RdzenKregowyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quiz': {
@@ -382,83 +75,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuizRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pien-mozgu': {
-      id: '/pien-mozgu'
-      path: '/pien-mozgu'
-      fullPath: '/pien-mozgu'
-      preLoaderRoute: typeof PienMozguRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ogolne': {
-      id: '/ogolne'
-      path: '/ogolne'
-      fullPath: '/ogolne'
-      preLoaderRoute: typeof OgolneRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nerwy-czaszkowe': {
-      id: '/nerwy-czaszkowe'
-      path: '/nerwy-czaszkowe'
-      fullPath: '/nerwy-czaszkowe'
-      preLoaderRoute: typeof NerwyCzaszkoweRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mozgowie-i-rdzen-nerwowy': {
-      id: '/mozgowie-i-rdzen-nerwowy'
-      path: '/mozgowie-i-rdzen-nerwowy'
-      fullPath: '/mozgowie-i-rdzen-nerwowy'
-      preLoaderRoute: typeof MozgowieIRdzenNerwowyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mozdzek': {
-      id: '/mozdzek'
-      path: '/mozdzek'
-      fullPath: '/mozdzek'
-      preLoaderRoute: typeof MozdzekRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/miedzymozgowie': {
-      id: '/miedzymozgowie'
-      path: '/miedzymozgowie'
-      fullPath: '/miedzymozgowie'
-      preLoaderRoute: typeof MiedzymozgowieRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/kresomozgowie': {
-      id: '/kresomozgowie'
-      path: '/kresomozgowie'
-      fullPath: '/kresomozgowie'
-      preLoaderRoute: typeof KresomozgowieRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/komory-mozgu': {
-      id: '/komory-mozgu'
-      path: '/komory-mozgu'
-      fullPath: '/komory-mozgu'
-      preLoaderRoute: typeof KomoryMozguRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/jadra-podstawy': {
-      id: '/jadra-podstawy'
-      path: '/jadra-podstawy'
-      fullPath: '/jadra-podstawy'
-      preLoaderRoute: typeof JadraPodstawyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/istota-biala': {
-      id: '/istota-biala'
-      path: '/istota-biala'
-      fullPath: '/istota-biala'
-      preLoaderRoute: typeof IstotaBialaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/drogi-nerwowe': {
-      id: '/drogi-nerwowe'
-      path: '/drogi-nerwowe'
-      fullPath: '/drogi-nerwowe'
-      preLoaderRoute: typeof DrogiNerwoweRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -466,40 +82,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/$category/$subcategory': {
-      id: '/$category/$subcategory'
-      path: '/$category/$subcategory'
-      fullPath: '/$category/$subcategory'
-      preLoaderRoute: typeof CategorySubcategoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DrogiNerwoweRoute: DrogiNerwoweRoute,
-  IstotaBialaRoute: IstotaBialaRoute,
-  JadraPodstawyRoute: JadraPodstawyRoute,
-  KomoryMozguRoute: KomoryMozguRoute,
-  KresomozgowieRoute: KresomozgowieRoute,
-  MiedzymozgowieRoute: MiedzymozgowieRoute,
-  MozdzekRoute: MozdzekRoute,
-  MozgowieIRdzenNerwowyRoute: MozgowieIRdzenNerwowyRoute,
-  NerwyCzaszkoweRoute: NerwyCzaszkoweRoute,
-  OgolneRoute: OgolneRoute,
-  PienMozguRoute: PienMozguRoute,
   QuizRoute: QuizRoute,
-  RdzenKregowyRoute: RdzenKregowyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  UkladCzuciowyRoute: UkladCzuciowyRoute,
-  UkladLimbicznyRoute: UkladLimbicznyRoute,
-  UkladNerwowyAutonomicznyRoute: UkladNerwowyAutonomicznyRoute,
-  UkladPozapiramidowyRoute: UkladPozapiramidowyRoute,
-  UkladRuchowyRoute: UkladRuchowyRoute,
-  ZmyslyRoute: ZmyslyRoute,
-  CategorySubcategoryRoute: CategorySubcategoryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

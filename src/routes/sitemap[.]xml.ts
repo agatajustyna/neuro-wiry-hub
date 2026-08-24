@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { categories } from "@/lib/categories";
 
 const BASE_URL = "https://neuro-swiry.lovable.app";
 
@@ -15,13 +14,8 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
-          ...categories.map((cat) => ({
-            path: `/${cat.slug}`,
-            changefreq: "weekly" as const,
-            priority: "0.8",
-          })),
+          { path: "/quiz", changefreq: "weekly", priority: "0.8" },
         ];
-
         const urls = entries.map((e) =>
           [
             `  <url>`,
@@ -29,23 +23,16 @@ export const Route = createFileRoute("/sitemap.xml")({
             e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,
-          ]
-            .filter(Boolean)
-            .join("\n"),
+          ].filter(Boolean).join("\n"),
         );
-
         const xml = [
           `<?xml version="1.0" encoding="UTF-8"?>`,
           `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
           ...urls,
           `</urlset>`,
         ].join("\n");
-
         return new Response(xml, {
-          headers: {
-            "Content-Type": "application/xml",
-            "Cache-Control": "public, max-age=3600",
-          },
+          headers: { "Content-Type": "application/xml", "Cache-Control": "public, max-age=3600" },
         });
       },
     },

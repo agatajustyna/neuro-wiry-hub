@@ -20,6 +20,26 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Transkrypcja podręcznika Krasuckiego — materiał chroniony prawem autorskim.
+# Prywatny indeks do walidacji pytań, trzymany lokalnie i nieodtwarzany w repo.
+# Odtworzenie: przepisanie skanu ze stron PDF 8-172 (strona PDF = strona książki - 3).
+docs/source-text/
+
+# Kopie zapasowe xlsx sprzed poprawek — poprzednie wersje są w historii gita
+data/*.backup-*.xlsx
+data/*_bck.xlsx
+
+# Pliki pośrednie potoku walidacji — duże i w całości regenerowalne
+# (scripts/validation/export_topics.py + build_dossiers.py)
+.validation-work/
+
+# Ślad audytowy walidacji — pola "evidence" zawierają dosłowne cytaty z podręcznika
+# wraz z numerami stron, więc nie trafia do publicznego repo. Kopia poza repo:
+# ../_validation-archive/ oraz lokalna gałąź develop-full (nigdy niepushowana).
+docs/validation/*
+!docs/validation/STATUS.md
+!docs/validation/DECISIONS.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

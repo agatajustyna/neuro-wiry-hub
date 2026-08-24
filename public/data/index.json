@@ -1,0 +1,698 @@
+{
+  "generatedFrom": "neuro_questions.xlsx",
+  "totalQuestions": 3355,
+  "sections": [
+    {
+      "id": 1,
+      "slug": "ogolne",
+      "title": "Ogólne",
+      "questionCount": 115,
+      "file": "sections/1.json",
+      "topics": [
+        {
+          "slug": "podzial-anatomiczny-ukladu-nerwowego",
+          "title": "Podział anatomiczny układu nerwowego",
+          "questionCount": 30
+        },
+        {
+          "slug": "neurohistologia",
+          "title": "Neurohistologia",
+          "questionCount": 27
+        },
+        {
+          "slug": "osrodki-i-drogi-ukladu-nerwowego",
+          "title": "Ośrodki i drogi układu nerwowego",
+          "questionCount": 30
+        },
+        {
+          "slug": "rozwoj-ukladu-nerwowego",
+          "title": "Rozwój układu nerwowego",
+          "questionCount": 28
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "mozgowie-i-rdzen-nerwowy",
+      "title": "Mózgowie i rdzeń nerwowy",
+      "questionCount": 180,
+      "file": "sections/2.json",
+      "topics": [
+        {
+          "slug": "opony-mozgowo-rdzeniowe",
+          "title": "Opony mózgowo-rdzeniowe",
+          "questionCount": 30
+        },
+        {
+          "slug": "plyn-mozgowo-rdzeniowy",
+          "title": "Płyn mózgowo-rdzeniowy",
+          "questionCount": 30
+        },
+        {
+          "slug": "unaczynienie",
+          "title": "Unaczynienie",
+          "questionCount": 30
+        },
+        {
+          "slug": "kolo-tetnicze-mozgu",
+          "title": "Koło tętnicze mózgu",
+          "questionCount": 30
+        },
+        {
+          "slug": "zatoki-zylne",
+          "title": "Zatoki żylne",
+          "questionCount": 30
+        },
+        {
+          "slug": "rozwoj-mozgowia",
+          "title": "Rozwój mózgowia",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "rdzen-kregowy",
+      "title": "Rdzeń kręgowy",
+      "questionCount": 180,
+      "file": "sections/3.json",
+      "topics": [
+        {
+          "slug": "budowa-zewnetrzna",
+          "title": "Budowa zewnętrzna",
+          "questionCount": 30
+        },
+        {
+          "slug": "budowa-wewnetrzna",
+          "title": "Budowa wewnętrzna",
+          "questionCount": 30
+        },
+        {
+          "slug": "istota-szara",
+          "title": "Istota szara",
+          "questionCount": 30
+        },
+        {
+          "slug": "istota-biala",
+          "title": "Istota biała",
+          "questionCount": 30
+        },
+        {
+          "slug": "segmenty-rdzenia",
+          "title": "Segmenty rdzenia",
+          "questionCount": 30
+        },
+        {
+          "slug": "korzenie-nerwowe",
+          "title": "Korzenie nerwowe",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "kresomozgowie",
+      "title": "Kresomózgowie",
+      "questionCount": 236,
+      "file": "sections/4.json",
+      "topics": [
+        {
+          "slug": "polkule-mozgu",
+          "title": "Półkule mózgu",
+          "questionCount": 30
+        },
+        {
+          "slug": "kora-mozgu-plat-czolowy",
+          "title": "Kora mózgu - płat czołowy",
+          "questionCount": 30
+        },
+        {
+          "slug": "kora-mozgu-plat-ciemieniowy",
+          "title": "Kora mózgu - płat ciemieniowy",
+          "questionCount": 30
+        },
+        {
+          "slug": "kora-mozgu-plat-skroniowy",
+          "title": "Kora mózgu - płat skroniowy",
+          "questionCount": 28
+        },
+        {
+          "slug": "kora-mozgu-plat-potyliczny",
+          "title": "Kora mózgu - płat potyliczny",
+          "questionCount": 29
+        },
+        {
+          "slug": "kora-mozgu-wyspa",
+          "title": "Kora mózgu - Wyspa",
+          "questionCount": 30
+        },
+        {
+          "slug": "platy-mozgu",
+          "title": "Płaty mózgu",
+          "questionCount": 29
+        },
+        {
+          "slug": "komory-boczne",
+          "title": "Komory boczne",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "slug": "miedzymozgowie",
+      "title": "Międzymózgowie",
+      "questionCount": 149,
+      "file": "sections/5.json",
+      "topics": [
+        {
+          "slug": "wzgorze",
+          "title": "Wzgórze",
+          "questionCount": 29
+        },
+        {
+          "slug": "podwzgorze",
+          "title": "Podwzgórze",
+          "questionCount": 30
+        },
+        {
+          "slug": "niskowzgorze",
+          "title": "Niskowzgórze",
+          "questionCount": 30
+        },
+        {
+          "slug": "nadwzgorze",
+          "title": "Nadwzgórze",
+          "questionCount": 30
+        },
+        {
+          "slug": "komora-iii",
+          "title": "Komora III",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "slug": "pien-mozgu",
+      "title": "Pień mózgu",
+      "questionCount": 207,
+      "file": "sections/6.json",
+      "topics": [
+        {
+          "slug": "rdzen-przedluzony",
+          "title": "Rdzeń przedłużony",
+          "questionCount": 30
+        },
+        {
+          "slug": "most",
+          "title": "Most",
+          "questionCount": 30
+        },
+        {
+          "slug": "srodmozgowie",
+          "title": "Śródmózgowie",
+          "questionCount": 147
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "slug": "mozdzek",
+      "title": "Móżdżek",
+      "questionCount": 118,
+      "file": "sections/7.json",
+      "topics": [
+        {
+          "slug": "budowa",
+          "title": "Budowa",
+          "questionCount": 30
+        },
+        {
+          "slug": "kora-mozdzku",
+          "title": "Kora móżdżku",
+          "questionCount": 29
+        },
+        {
+          "slug": "jadra-mozdzku",
+          "title": "Jądra móżdżku",
+          "questionCount": 29
+        },
+        {
+          "slug": "drogi-mozdzkowe",
+          "title": "Drogi móżdżkowe",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "slug": "uklad-limbiczny",
+      "title": "Układ limbiczny",
+      "questionCount": 239,
+      "file": "sections/8.json",
+      "topics": [
+        {
+          "slug": "hipokamp",
+          "title": "Hipokamp",
+          "questionCount": 120
+        },
+        {
+          "slug": "cialo-migdalowate",
+          "title": "Ciało migdałowate",
+          "questionCount": 30
+        },
+        {
+          "slug": "zakret-obreczy",
+          "title": "Zakręt obręczy",
+          "questionCount": 29
+        },
+        {
+          "slug": "sklepienie",
+          "title": "Sklepienie",
+          "questionCount": 30
+        },
+        {
+          "slug": "przegroda",
+          "title": "Przegroda",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "slug": "jadra-podstawy",
+      "title": "Jądra podstawy",
+      "questionCount": 176,
+      "file": "sections/9.json",
+      "topics": [
+        {
+          "slug": "prazkowie",
+          "title": "Prążkowie",
+          "questionCount": 30
+        },
+        {
+          "slug": "galka-blada",
+          "title": "Gałka blada",
+          "questionCount": 29
+        },
+        {
+          "slug": "istota-czarna",
+          "title": "Istota czarna",
+          "questionCount": 30
+        },
+        {
+          "slug": "jadro-niskowzgorzowe",
+          "title": "Jądro niskowzgórzowe",
+          "questionCount": 29
+        },
+        {
+          "slug": "polaczenia-jader-podstawy",
+          "title": "Połączenia jąder podstawy",
+          "questionCount": 29
+        },
+        {
+          "slug": "znaczenie-kliniczne",
+          "title": "Znaczenie kliniczne",
+          "questionCount": 29
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "slug": "uklad-pozapiramidowy",
+      "title": "Układ pozapiramidowy",
+      "questionCount": 149,
+      "file": "sections/10.json",
+      "topics": [
+        {
+          "slug": "elementy-ukladu-pozapiramidowego",
+          "title": "Elementy układu pozapiramidowego",
+          "questionCount": 29
+        },
+        {
+          "slug": "drogi-pozapiramidowe",
+          "title": "Drogi pozapiramidowe",
+          "questionCount": 30
+        },
+        {
+          "slug": "regulacja-napiecia-miesniowego",
+          "title": "Regulacja napięcia mięśniowego",
+          "questionCount": 30
+        },
+        {
+          "slug": "kontrola-ruchow-automatycznych",
+          "title": "Kontrola ruchów automatycznych",
+          "questionCount": 30
+        },
+        {
+          "slug": "znaczenie-kliniczne",
+          "title": "Znaczenie kliniczne",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "slug": "istota-biala",
+      "title": "Istota biała",
+      "questionCount": 178,
+      "file": "sections/11.json",
+      "topics": [
+        {
+          "slug": "torebka-wewnetrzna",
+          "title": "Torebka wewnętrzna",
+          "questionCount": 29
+        },
+        {
+          "slug": "torebka-zewnetrzna",
+          "title": "Torebka zewnętrzna",
+          "questionCount": 30
+        },
+        {
+          "slug": "spoidla",
+          "title": "Spoidła",
+          "questionCount": 30
+        },
+        {
+          "slug": "drogi-kojarzeniowe",
+          "title": "Drogi kojarzeniowe",
+          "questionCount": 30
+        },
+        {
+          "slug": "promienistosc-wiencowa",
+          "title": "Promienistość wieńcowa",
+          "questionCount": 30
+        },
+        {
+          "slug": "znaczenie-kliniczne",
+          "title": "Znaczenie kliniczne",
+          "questionCount": 29
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "slug": "komory-mozgu",
+      "title": "Komory mózgu",
+      "questionCount": 179,
+      "file": "sections/12.json",
+      "topics": [
+        {
+          "slug": "komory-boczne",
+          "title": "Komory boczne",
+          "questionCount": 30
+        },
+        {
+          "slug": "komora-iii",
+          "title": "Komora III",
+          "questionCount": 30
+        },
+        {
+          "slug": "wodociag-mozgu",
+          "title": "Wodociąg mózgu",
+          "questionCount": 30
+        },
+        {
+          "slug": "komora-iv",
+          "title": "Komora IV",
+          "questionCount": 30
+        },
+        {
+          "slug": "splot-naczyniowkowy",
+          "title": "Splot naczyniówkowy",
+          "questionCount": 29
+        },
+        {
+          "slug": "plyn-mozgowo-rdzeniowy",
+          "title": "Płyn mózgowo-rdzeniowy",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "slug": "nerwy-czaszkowe",
+      "title": "Nerwy czaszkowe",
+      "questionCount": 356,
+      "file": "sections/13.json",
+      "topics": [
+        {
+          "slug": "i",
+          "title": "I",
+          "questionCount": 30
+        },
+        {
+          "slug": "ii",
+          "title": "II",
+          "questionCount": 29
+        },
+        {
+          "slug": "iii",
+          "title": "III",
+          "questionCount": 29
+        },
+        {
+          "slug": "iv",
+          "title": "IV",
+          "questionCount": 30
+        },
+        {
+          "slug": "v",
+          "title": "V",
+          "questionCount": 30
+        },
+        {
+          "slug": "vi",
+          "title": "VI",
+          "questionCount": 30
+        },
+        {
+          "slug": "vii",
+          "title": "VII",
+          "questionCount": 29
+        },
+        {
+          "slug": "viii",
+          "title": "VIII",
+          "questionCount": 29
+        },
+        {
+          "slug": "ix",
+          "title": "IX",
+          "questionCount": 30
+        },
+        {
+          "slug": "x",
+          "title": "X",
+          "questionCount": 30
+        },
+        {
+          "slug": "xi",
+          "title": "XI",
+          "questionCount": 30
+        },
+        {
+          "slug": "xii",
+          "title": "XII",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "slug": "drogi-nerwowe",
+      "title": "Drogi nerwowe",
+      "questionCount": 179,
+      "file": "sections/14.json",
+      "topics": [
+        {
+          "slug": "drogi-wstepujace",
+          "title": "Drogi wstępujące",
+          "questionCount": 29
+        },
+        {
+          "slug": "drogi-zstepujace",
+          "title": "Drogi zstępujące",
+          "questionCount": 30
+        },
+        {
+          "slug": "drogi-kojarzeniowe",
+          "title": "Drogi kojarzeniowe",
+          "questionCount": 30
+        },
+        {
+          "slug": "drogi-spoidlowe",
+          "title": "Drogi spoidłowe",
+          "questionCount": 30
+        },
+        {
+          "slug": "drogi-projekcyjne",
+          "title": "Drogi projekcyjne",
+          "questionCount": 30
+        },
+        {
+          "slug": "znaczenie-kliniczne",
+          "title": "Znaczenie kliniczne",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "slug": "uklad-nerwowy-autonomiczny",
+      "title": "Układ nerwowy autonomiczny",
+      "questionCount": 178,
+      "file": "sections/15.json",
+      "topics": [
+        {
+          "slug": "uklad-wspolczulny",
+          "title": "Układ współczulny",
+          "questionCount": 30
+        },
+        {
+          "slug": "uklad-przywspolczulny",
+          "title": "Układ przywspółczulny",
+          "questionCount": 30
+        },
+        {
+          "slug": "uklad-jelitowy",
+          "title": "Układ jelitowy",
+          "questionCount": 30
+        },
+        {
+          "slug": "sploty-autonomiczne",
+          "title": "Sploty autonomiczne",
+          "questionCount": 30
+        },
+        {
+          "slug": "neuroprzekazniki",
+          "title": "Neuroprzekaźniki",
+          "questionCount": 30
+        },
+        {
+          "slug": "znaczenie-kliniczne",
+          "title": "Znaczenie kliniczne",
+          "questionCount": 28
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "slug": "uklad-czuciowy",
+      "title": "Układ czuciowy",
+      "questionCount": 180,
+      "file": "sections/16.json",
+      "topics": [
+        {
+          "slug": "czucie-powierzchniowe",
+          "title": "Czucie powierzchniowe",
+          "questionCount": 30
+        },
+        {
+          "slug": "czucie-glebokie",
+          "title": "Czucie głębokie",
+          "questionCount": 30
+        },
+        {
+          "slug": "czucie-trzewne",
+          "title": "Czucie trzewne",
+          "questionCount": 30
+        },
+        {
+          "slug": "droga-sznurow-tylnych",
+          "title": "Droga sznurów tylnych",
+          "questionCount": 30
+        },
+        {
+          "slug": "droga-rdzeniowo-wzgorzowa",
+          "title": "Droga rdzeniowo-wzgórzowa",
+          "questionCount": 30
+        },
+        {
+          "slug": "integracja-czucia",
+          "title": "Integracja czucia",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "slug": "uklad-ruchowy",
+      "title": "Układ ruchowy",
+      "questionCount": 178,
+      "file": "sections/17.json",
+      "topics": [
+        {
+          "slug": "droga-piramidowa",
+          "title": "Droga piramidowa",
+          "questionCount": 30
+        },
+        {
+          "slug": "drogi-pozapiramidowe",
+          "title": "Drogi pozapiramidowe",
+          "questionCount": 29
+        },
+        {
+          "slug": "kora-ruchowa",
+          "title": "Kora ruchowa",
+          "questionCount": 29
+        },
+        {
+          "slug": "motoneuron-gorny",
+          "title": "Motoneuron górny",
+          "questionCount": 30
+        },
+        {
+          "slug": "motoneuron-dolny",
+          "title": "Motoneuron dolny",
+          "questionCount": 30
+        },
+        {
+          "slug": "kontrola-ruchu",
+          "title": "Kontrola ruchu",
+          "questionCount": 30
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "slug": "zmysly",
+      "title": "Zmysły",
+      "questionCount": 178,
+      "file": "sections/18.json",
+      "topics": [
+        {
+          "slug": "uklad-wzrokowy",
+          "title": "Układ wzrokowy",
+          "questionCount": 30
+        },
+        {
+          "slug": "uklad-sluchowy",
+          "title": "Układ słuchowy",
+          "questionCount": 30
+        },
+        {
+          "slug": "uklad-przedsionkowy",
+          "title": "Układ przedsionkowy",
+          "questionCount": 30
+        },
+        {
+          "slug": "uklad-wechowy",
+          "title": "Układ węchowy",
+          "questionCount": 29
+        },
+        {
+          "slug": "uklad-smakowy",
+          "title": "Układ smakowy",
+          "questionCount": 29
+        },
+        {
+          "slug": "integracja-sensoryczna",
+          "title": "Integracja sensoryczna",
+          "questionCount": 30
+        }
+      ]
+    }
+  ]
+}
