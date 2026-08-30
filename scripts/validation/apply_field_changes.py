@@ -40,6 +40,8 @@ def main():
             fail(f"propozycja {i}: nieznane pole '{p['field']}'")
         if str(p["from"]) == str(p["to"]):
             fail(f"propozycja {i} ({p['sheet']} w.{p['row']}): 'from' == 'to' (pusta zmiana zaśmieca dziennik)")
+        if p["sheet"] not in wb.sheetnames:
+            fail(f"propozycja {i}: arkusz '{p['sheet']}' nie istnieje w skoroszycie")
         ws = wb[p["sheet"]]
         cur_id = cell_text(ws.cell(p["row"], FIELD_COL["ID"]))
         if cur_id != p["id"]:
@@ -74,6 +76,8 @@ def main():
     if args.apply:
         wb.save(args.xlsx)
         log_path = Path(args.log)
+        if not log_path.exists():
+            fail(f"plik dziennika nie istnieje: {log_path}")
         log = json.loads(log_path.read_text(encoding="utf-8"))
         seen = {json.dumps(e, sort_keys=True, ensure_ascii=False) for e in log}
         new = [p for p in applied if json.dumps(p, sort_keys=True, ensure_ascii=False) not in seen]

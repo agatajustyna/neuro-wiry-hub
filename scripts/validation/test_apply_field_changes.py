@@ -104,3 +104,19 @@ def test_duplicate_options_fail(tmp_path):
     assert r.returncode != 0
     ws = openpyxl.load_workbook(xlsx)["1.Testowy"]
     assert ws.cell(2, FIELD_COL["B"]).value == "b1"  # nic nie zapisano
+
+
+def test_dry_run_writes_nothing(tmp_path):
+    xlsx = tmp_path / "t.xlsx"
+    make_xlsx(xlsx)
+    log = tmp_path / "log.json"
+    log.write_text("[]", encoding="utf-8")
+    props = [{"sheet": "1.Testowy", "row": 2, "id": "T-1", "field": "Wyjaśnienie", "from": "Bo tak (Image 5).", "to": "Bo tak.", "why": "w", "signals": "test"}]
+    p = tmp_path / "p.json"
+    p.write_text(json.dumps(props, ensure_ascii=False), encoding="utf-8")
+    r = run(xlsx, p, log, apply=False)
+    assert r.returncode == 0, r.stderr
+    assert "DRY-RUN" in r.stdout
+    ws = openpyxl.load_workbook(xlsx)["1.Testowy"]
+    assert ws.cell(2, FIELD_COL["Wyjaśnienie"]).value == "Bo tak (Image 5)."  # xlsx nietknięty
+    assert json.loads(log.read_text(encoding="utf-8")) == []  # dziennik nietknięty
