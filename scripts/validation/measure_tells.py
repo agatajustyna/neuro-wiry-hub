@@ -87,7 +87,9 @@ def main():
     print(f"pytań: {n} | image: {len(img_qs)} (nawiasowe {par}, wplecione {len(img_qs) - par})")
     for k, v in tells.items():
         print(f"{k}: {len(v)}")
-    print(f"poprawna najdłuższa: {longest} ({100 * longest / n:.1f}%) | najkrótsza: {shortest} ({100 * shortest / n:.1f}%), w tym silnie: {strong_shortest} ({100 * strong_shortest / n:.1f}%) | unia: {len(union)} ({100 * len(union) / n:.1f}%)")
+    print(f"poprawna najdłuższa: {longest} ({100 * longest / n:.1f}%) | "
+          f"najkrótsza: {shortest} ({100 * shortest / n:.1f}%), w tym silnie: {strong_shortest} ({100 * strong_shortest / n:.1f}%) | "
+          f"unia: {len(union)} ({100 * len(union) / n:.1f}%)")
     print("tokeny ratio>=2 (top 5): " + ", ".join(f"{t} {r}" for r, cc, wc, t in token_ratios[:5]))
 
 
