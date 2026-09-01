@@ -159,7 +159,7 @@ Pozostałe pozycje listy po mikro-rundzie (niezmienione względem pomiaru sprzed
 
 ### Testy i sanity-check aplikacji
 
-`npm run data:generate` → `OK: 3355 pytań, 18 działów, 106 tematów` (bez ostrzeżeń o cytowaniu liter, bez błędów). `python3 -m pytest scripts/ -v` → 13 passed. `npm test` (vitest) → 12 passed, zgodnie z baseline sprzed planu. `npm run dev` na porcie 8080 odpowiedział HTTP 200; `public/data/sections/9.json` i `10.json` po regeneracji nie zawierają już żadnego dopasowania „image" (wcześniej to właśnie te dwa działy niosły odniesienia do rycin); próbka 5 losowych pytań z różnych działów ma po 4 opcje, niepuste i parami różne. **Uwaga**: powyższa regeneracja i testy dotyczą stanu xlsx sprzed mikro-rundy „lub" (19 wierszy). Commit mikro-rundy 1 celowo nie zawiera `npm run data:generate` — `public/data/` pozostaje o jedną rewizję xlsx w tyle do czasu kolejnej regeneracji (do zrobienia razem z ewentualną mikro-rundą 2 albo osobno, przed wypchnięciem gałęzi).
+`npm run data:generate` → `OK: 3355 pytań, 18 działów, 106 tematów` (bez ostrzeżeń o cytowaniu liter, bez błędów). `python3 -m pytest scripts/ -v` → 13 passed. `npm test` (vitest) → 12 passed, zgodnie z baseline sprzed planu. `npm run dev` na porcie 8080 odpowiedział HTTP 200; `public/data/sections/9.json` i `10.json` po regeneracji nie zawierają już żadnego dopasowania „image" (wcześniej to właśnie te dwa działy niosły odniesienia do rycin); próbka 5 losowych pytań z różnych działów ma po 4 opcje, niepuste i parami różne. Regeneracja powtórzona po mikro-rundzie „lub" (`npm run data:generate` → `OK: 3355 pytań`, `npm test` → 12 passed) — `public/data/` odzwierciedla teraz wszystkie 19 poprawek tej rundy (11 dotkniętych działów w diffie).
 
 ### Czego nauczyła ta sesja
 
