@@ -106,6 +106,19 @@ def test_duplicate_options_fail(tmp_path):
     assert ws.cell(2, FIELD_COL["B"]).value == "b1"  # nic nie zapisano
 
 
+def test_missing_log_fails_before_save(tmp_path):
+    xlsx = tmp_path / "t.xlsx"
+    make_xlsx(xlsx)
+    log = tmp_path / "does-not-exist.json"  # never created
+    props = [{"sheet": "1.Testowy", "row": 2, "id": "T-1", "field": "Wyjaśnienie", "from": "Bo tak (Image 5).", "to": "Bo tak.", "why": "w", "signals": "test"}]
+    p = tmp_path / "p.json"
+    p.write_text(json.dumps(props, ensure_ascii=False), encoding="utf-8")
+    r = run(xlsx, p, log, apply=True)
+    assert r.returncode != 0
+    ws = openpyxl.load_workbook(xlsx)["1.Testowy"]
+    assert ws.cell(2, FIELD_COL["Wyjaśnienie"]).value == "Bo tak (Image 5)."  # xlsx nietknięty
+
+
 def test_dry_run_writes_nothing(tmp_path):
     xlsx = tmp_path / "t.xlsx"
     make_xlsx(xlsx)

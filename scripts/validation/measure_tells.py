@@ -11,8 +11,8 @@ sys.path.insert(0, str(HERE.parent))
 from generate_quiz_data import cell_text, is_excluded  # noqa: E402
 
 LETTER_TO_INDEX = {"A": 0, "B": 1, "C": 2, "D": 3}
-IMG = re.compile(r"\bimage\b", re.IGNORECASE)
-IMG_PAREN = re.compile(r"\s*\((?:zob\.\s*|por\.\s*)?Image[^)]*\)", re.IGNORECASE)
+IMG = re.compile(r"\b(image|obraz)\b", re.IGNORECASE)
+IMG_PAREN = re.compile(r"\s*\((?:zob\.\s*|por\.\s*)?(?:Image|obraz)[^)]*\)", re.IGNORECASE)
 CONJ = re.compile(r"\S\s+(i|oraz)\s+\S", re.IGNORECASE)
 PAREN = re.compile(r"\([^)]{3,}\)")
 COMMA = re.compile(r",")

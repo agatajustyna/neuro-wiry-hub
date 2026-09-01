@@ -5,8 +5,8 @@ import re
 import sys
 from pathlib import Path
 
-IMG = re.compile(r"\bimage\b", re.IGNORECASE)
-IMG_PAREN = re.compile(r"\s*\((?:zob\.\s*|por\.\s*)?Image[^)]*\)", re.IGNORECASE)
+IMG = re.compile(r"\b(image|obraz)\b", re.IGNORECASE)
+IMG_PAREN = re.compile(r"\s*\((?:zob\.\s*|por\.\s*)?(?:Image|obraz)[^)]*\)", re.IGNORECASE)
 
 
 def clean(text):

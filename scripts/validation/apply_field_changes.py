@@ -31,6 +31,11 @@ def main():
     if not isinstance(props, list) or not props:
         fail("plik propozycji pusty albo nie jest listą")
     wb = openpyxl.load_workbook(args.xlsx)
+    log_path = None
+    if args.apply:
+        log_path = Path(args.log)
+        if not log_path.exists():
+            fail(f"plik dziennika nie istnieje: {log_path}")
     applied, skipped = [], 0
     for i, p in enumerate(props):
         missing = [k for k in ("sheet", "row", "id", "field", "from", "to", "why", "signals") if k not in p]
@@ -75,9 +80,6 @@ def main():
             fail(f"{sheet} w.{row}: opcje po edycji nie są parami różne: {opts}")
     if args.apply:
         wb.save(args.xlsx)
-        log_path = Path(args.log)
-        if not log_path.exists():
-            fail(f"plik dziennika nie istnieje: {log_path}")
         log = json.loads(log_path.read_text(encoding="utf-8"))
         seen = {json.dumps(e, sort_keys=True, ensure_ascii=False) for e in log}
         new = [p for p in applied if json.dumps(p, sort_keys=True, ensure_ascii=False) not in seen]
