@@ -94,3 +94,69 @@ już pracę — 7,8 mln tokenów. Gdyby skrypt przerwał pracę, kosztowałoby t
 
 **Agent zapisuje wynik na dysk, zanim go zwróci.** Przy trafieniu w limit wyniki z pamięci
 przepadają, pliki zostają. Uratowało to 94 wyniki przy pierwszym trafieniu w limit.
+
+## Stan po planie „detells" — 1 września 2026
+
+Osobny plan (`docs/superpowers/plans/2026-08-30-neuro-quiz-detells.md`, gałąź `detells`) zajął się dwoma rodzajami usterek, których pierwsza walidacja nie mierzyła: dosłownymi odniesieniami do rycin książki („Image N") w wyjaśnieniach oraz wyróżnikami tekstowymi pozwalającymi zgadnąć poprawną odpowiedź bez wiedzy merytorycznej — długością, spójnikami, nawiasami, przecinkami i zwrotami kategorycznymi występującymi nierówno między poprawną opcją a dystraktorami. Instrument pomiarowy (`scripts/validation/measure_tells.py`) i walidujący applier (`scripts/validation/apply_field_changes.py`) powstały jako Task 1–2 tego planu; każda naniesiona zmiana ma wpis w `docs/validation/applied-changes.json` z polami `from`/`to`/`why`/`signals`, tak jak w pierwszej walidacji.
+
+### Co zrobiono
+
+| | Baseline | Po planie |
+|---|---|---|
+| odniesienia do rycin „Image" | 321 (141 nawiasowych, 180 wplecionych w zdanie) | **0** |
+| nawias tylko-w-poprawnej | 359 | 8 (spadek do 9 zaraz po Tasku 5, dalszy dryf przy pracach nad długością) |
+| zwroty kategoryczne w ≥2 dystraktorach | 99 | 3 (do 5 po Tasku 6, resztę domknęło rozjemstwo Tasku 7) |
+| unia wszystkich wyróżników | 1182 pytań (35,2%) | 70 pytań (2,1%) |
+
+141 odniesień nawiasowych usunięto mechanicznie (skrypt, bez LLM), 180 wplecionych w zdanie przeredagowali agenci Sonnet z twardym zakazem zmiany treści merytorycznej i cytowania liter odpowiedzi. Nawiasy przeniesiono z poprawnej opcji do wyjaśnienia tam, gdzie było to możliwe bez utraty jednoznaczności (359 pytań, ślepy solver na próbce 40 potwierdził ≥95% trafień po edycji). Zwroty kategoryczne w dystraktorach złagodzono z równoległą weryfikacją błędności względem dossier źródłowego — ryzykiem było przypadkowe uczynienie dystraktora prawdziwym, dlatego część spornych przypadków (5 z 99) trafiła do rozjemstwa razem z balansem długości. Największy przebieg (balans długości/koniunkcji/przecinka) objął 849 pytań w głównej turze plus 91 w domykającej mini-turze dla samego wyróżnika „poprawna najdłuższa" — każda propozycja przeszła przez ślepego solvera i kontrolera błędności, spory rozjemcę na skanie oryginału.
+
+Łącznie `docs/validation/applied-changes.json` urósł o **2454 wpisy** ponad 948 z pierwszej walidacji (log jest lokalny, poza gitem — patrz nota na początku pliku), obejmujące **1459 unikalnych pytań** (43,5% zbioru). Rozbicie wpisów per `signals` (policzone skryptem, granica dokładnie przy wpisie 948. — sygnatury sprzed tego indeksu pokrywają się co do liczby z tabelą z pierwszej walidacji):
+
+| Task | Sygnał(y) w dzienniku | Wpisów | Unikalnych pytań |
+|---|---|---|---|
+| 3 — usunięcie nawiasowego „Image" | `mechaniczne usunięcie odniesienia do ryciny` | 141 | 141 |
+| 4 — przeredagowanie wplecionego „Image" | `przeredagowanie odniesienia do ryciny` | 180 | 180 |
+| 5 — nawias tylko-w-poprawnej | `balans opcji: nawias tylko w poprawnej` | 519 | 351 |
+| 6 — zwroty kategoryczne | `złagodzenie kategorycznego dystraktora` (+ pochodne z rozjemstwa) | 205 | 98 |
+| 7 — balans długości/koniunkcji/przecinka (główna tura + rozjemstwo) | różne, per pytanie (walidator, solver, rozjemca, korekty spójności wyjaśnień) | 1305 | 799 |
+| 7 mini — domknięcie „najdłuższej" | `mini-przebieg: redukcja przewagi długości` | 104 | 85 |
+| **Razem** | | **2454** | **1459** |
+
+(Kolumna „unikalnych pytań" liczy wiersze dotknięte danym sygnałem osobno dla każdego wiersza tabeli — jedno pytanie mogło zebrać poprawki z kilku tasków, np. najpierw nawias w Tasku 5, potem balans długości w Tasku 7, więc suma tej kolumny [1657] nie jest unią. Unię po [arkusz, wiersz] dla całego planu policzono niezależnie i wynosi dokładnie 1459 — to liczba w wierszu „Razem".)
+
+Liczba pytań w quizie nie zmieniła się (3355) — plan „detells" nie wykluczał ani nie dodawał pytań, wyłącznie redagował istniejącą treść.
+
+### Cele akceptacyjne — wynik końcowego pomiaru
+
+Pomiar: `python3 scripts/validation/measure_tells.py data/neuro_questions.xlsx docs/validation/detells/final.json`
+
+| Metryka | Baseline | Cel | Wynik | Status |
+|---|---|---|---|---|
+| odniesienia do rycin (wszystkie pola) | 321 | 0 | 0 | PASS |
+| nawias tylko-w-poprawnej | 359 | ≤ 36 | 8 | PASS |
+| koniunkcja tylko-w-poprawnej | 383 | ≤ 40 | 25 | PASS |
+| przecinek tylko-w-poprawnej | 93 | ≤ 10 | 9 | PASS |
+| kategoryczne w ≥2 błędnych | 99 | ≤ 10 | 3 | PASS |
+| poprawna ≥1,5× najdłuższa | 855 | ≤ 170 (5%) | 50 | PASS |
+| poprawna najdłuższa (unikatowo) | 54,5% | ≤ 35% | **35,8%** | **PRAWIE (0,8 pp powyżej celu)** |
+| poprawna najkrótsza — strażnik regresji | 8,5% (silnie 1,5%) | ≤ 12% (silnie ≤ 3%) | 11,7% (silnie 2,5%) | PASS |
+
+**Decyzja o pozostawieniu odstępstwa (35,8% zamiast ≤35%).** Wszystkie SILNE wyróżniki (nawias, koniunkcja, przecinek, kategoryczność, długość ≥1,5×) spadły o ≥90% względem baseline, a unia wszystkich wyróżników razem — 1182 pytania na starcie — skurczyła się do 70 (2,1%). Resztkowy sygnał „poprawna najdłuższa" nie znika, bo część poprawnych odpowiedzi jest z natury pełną nazwą struktury anatomicznej, której nie da się skrócić bez utraty jednoznaczności (patrz przykład w dzienniku dla `PLCI-10` — rozbudowano dystraktor, bo skrócenie poprawnej odpowiedzi zepsułoby pytanie). Domykająca mini-tura (91 pytań, próg selekcji: poprawna ≥1,4× drugiej najdłuższej) zredukowała ten wyróżnik z 37,0% do 35,8%, ale próg jednostkowego ryzyka treściowego (przebudowa dystraktora zamiast go po prostu skrócić) rósł z każdą kolejną turą, a przewaga poprawnej nad drugą najdłuższą w pozostałych 1202 pytaniach jest już < 1,4× (czyli poniżej progu, którym w ogóle kwalifikowano pytania do edycji) — dalsze iteracje to malejące zyski przy rosnącym ryzyku zepsucia treści. Kontroler zaakceptował odstępstwo jako świadomy kompromis, nie jako przeoczenie.
+
+### `token_ratios` — przegląd tokenów stylistycznych
+
+Dodatkowe kryterium Tasku 8 (poza formalną tabelą wyżej) zakładało, że token „lub" zniknie z listy `token_ratios` albo spadnie poniżej ratio 2. **Nie spełnione**: „lub" ma ratio 25,0 (25 wystąpień w poprawnych opcjach vs 3 w błędnych), spadek z baseline 64,0 jest efektem ubocznym prac nad innymi wyróżnikami, nie celowej interwencji — żaden task planu nie mierzył ani nie korygował tego tokenu wprost (detektor koniunkcji z Tasku 1 łapie tylko „i"/„oraz", nie „lub"). Przegląd 25 poprawnych opcji zawierających „lub" pokazuje, że w większości przypadków „lub" opisuje realną alternatywę anatomiczną (np. „Zatoru lub zakrzepu", „Na poziomie kręgu L1 lub L2", „Owalny lub okrągły") — treściowo uzasadnione, ale statystycznie nadal silny wyróżnik: ktoś zgadujący opcję zawierającą „lub" trafi nieproporcjonalnie często. To realna luka pozostawiona przez ten plan, nie fałszywy alarm — warto ją domknąć osobnym mini-przebiegiem tego samego wzorca co Task 5/6, jeśli będzie kolejna tura.
+
+Pozostałe pozycje listy: „bocznym" (3,6), „hipokampa" (3,5), „bruzdy" (3,2), „między" (2,9), „części" (2,2), „tylnej" (2,1), „blaszki" (2,0) — próbka 3 przykładów na token potwierdza charakter merytoryczny/anatomiczny (terminy topograficzne skupione tematycznie: boczność, hipokamp, bruzdy, relacje przestrzenne „między X a Y"), nie stylistyczny. Wyjątek: „tak" (2,5, 49 wystąpień w poprawnych vs 60 w błędnych) pochodzi z pytań tak/nie („Czy X posiada Y?") — to nie jest tell długości czy stylu, tylko nierówny rozkład odpowiedzi twierdzących/przeczących w tej podgrupie pytań; poza zakresem tego planu (żaden task go nie adresował), ale wart odnotowania jako osobna kategoria ryzyka na przyszłość.
+
+### Testy i sanity-check aplikacji
+
+`npm run data:generate` → `OK: 3355 pytań, 18 działów, 106 tematów` (bez ostrzeżeń o cytowaniu liter, bez błędów). `python3 -m pytest scripts/ -v` → 13 passed. `npm test` (vitest) → 12 passed, zgodnie z baseline sprzed planu. `npm run dev` na porcie 8080 odpowiedział HTTP 200; `public/data/sections/9.json` i `10.json` po regeneracji nie zawierają już żadnego dopasowania „image" (wcześniej to właśnie te dwa działy niosły odniesienia do rycin); próbka 5 losowych pytań z różnych działów ma po 4 opcje, niepuste i parami różne.
+
+### Czego nauczyła ta sesja
+
+**Wąski regex zostawia sąsiednie wzorce nietknięte.** Detektor koniunkcji mierzył tylko „i"/„oraz" — token „lub" niósł silniejszy sygnał (ratio 64→25) i nigdy nie trafił do żadnej tury korekt, bo żaden task go nie szukał. Miernik akceptacyjny trzeba traktować jako listę TYLKO zmierzonych zjawisk, nie dowód kompletności.
+
+**Twardy próg selekcji ogranicza też wielkość poprawki.** Mini-tura Tasku 7 wzięła tylko pytania z przewagą długości ≥1,4× — świadomie zostawiła resztkę tuż poniżej progu, bo dalsze schodzenie z progiem oznaczało edycję pytań, gdzie poprawna odpowiedź jest z natury pełną nazwą i skrócenie zepsułoby jednoznaczność.
+
+**Baseline i pomiar końcowy muszą liczyć identycznie.** Cała tabela akceptacyjna działa tylko dlatego, że `measure_tells.py` się nie zmienił między Taskiem 1 a Taskiem 8 — każda zmiana definicji w trakcie planu unieważniłaby porównanie.
