@@ -106,11 +106,12 @@ Osobny plan (`docs/superpowers/plans/2026-08-30-neuro-quiz-detells.md`, gałąź
 | odniesienia do rycin „Image" | 321 (141 nawiasowych, 180 wplecionych w zdanie) | **0** |
 | nawias tylko-w-poprawnej | 359 | 8 (spadek do 9 zaraz po Tasku 5, dalszy dryf przy pracach nad długością) |
 | zwroty kategoryczne w ≥2 dystraktorach | 99 | 3 (do 5 po Tasku 6, resztę domknęło rozjemstwo Tasku 7) |
-| unia wszystkich wyróżników | 1182 pytań (35,2%) | 70 pytań (2,1%) |
+| token „lub" tylko-w-poprawnej (mikro-runda domykająca) | 25 (ratio w `token_ratios` 25,0) | 6 (ratio 3,5) — patrz sekcja `token_ratios` niżej |
+| unia wszystkich wyróżników | 1182 pytań (35,2%) | 74 pytań (2,2%) |
 
 141 odniesień nawiasowych usunięto mechanicznie (skrypt, bez LLM), 180 wplecionych w zdanie przeredagowali agenci Sonnet z twardym zakazem zmiany treści merytorycznej i cytowania liter odpowiedzi. Nawiasy przeniesiono z poprawnej opcji do wyjaśnienia tam, gdzie było to możliwe bez utraty jednoznaczności (359 pytań, ślepy solver na próbce 40 potwierdził ≥95% trafień po edycji). Zwroty kategoryczne w dystraktorach złagodzono z równoległą weryfikacją błędności względem dossier źródłowego — ryzykiem było przypadkowe uczynienie dystraktora prawdziwym, dlatego część spornych przypadków (5 z 99) trafiła do rozjemstwa razem z balansem długości. Największy przebieg (balans długości/koniunkcji/przecinka) objął 849 pytań w głównej turze plus 91 w domykającej mini-turze dla samego wyróżnika „poprawna najdłuższa" — każda propozycja przeszła przez ślepego solvera i kontrolera błędności, spory rozjemcę na skanie oryginału.
 
-Łącznie `docs/validation/applied-changes.json` urósł o **2454 wpisy** ponad 948 z pierwszej walidacji (log jest lokalny, poza gitem — patrz nota na początku pliku), obejmujące **1459 unikalnych pytań** (43,5% zbioru). Rozbicie wpisów per `signals` (policzone skryptem, granica dokładnie przy wpisie 948. — sygnatury sprzed tego indeksu pokrywają się co do liczby z tabelą z pierwszej walidacji):
+Łącznie `docs/validation/applied-changes.json` urósł o **2473 wpisy** ponad 948 z pierwszej walidacji (log jest lokalny, poza gitem — patrz nota na początku pliku), obejmujące **1467 unikalnych pytań** (43,7% zbioru). Rozbicie wpisów per `signals` (policzone skryptem, granica dokładnie przy wpisie 948. — sygnatury sprzed tego indeksu pokrywają się co do liczby z tabelą z pierwszej walidacji):
 
 | Task | Sygnał(y) w dzienniku | Wpisów | Unikalnych pytań |
 |---|---|---|---|
@@ -120,38 +121,45 @@ Osobny plan (`docs/superpowers/plans/2026-08-30-neuro-quiz-detells.md`, gałąź
 | 6 — zwroty kategoryczne | `złagodzenie kategorycznego dystraktora` (+ pochodne z rozjemstwa) | 205 | 98 |
 | 7 — balans długości/koniunkcji/przecinka (główna tura + rozjemstwo) | różne, per pytanie (walidator, solver, rozjemca, korekty spójności wyjaśnień) | 1305 | 799 |
 | 7 mini — domknięcie „najdłuższej" | `mini-przebieg: redukcja przewagi długości` | 104 | 85 |
-| **Razem** | | **2454** | **1459** |
+| 8 mikro-runda 1 — token „lub" tylko-w-poprawnej | `mikroronda: wyróżnik lub` | 19 | 19 |
+| **Razem** | | **2473** | **1467** |
 
-(Kolumna „unikalnych pytań" liczy wiersze dotknięte danym sygnałem osobno dla każdego wiersza tabeli — jedno pytanie mogło zebrać poprawki z kilku tasków, np. najpierw nawias w Tasku 5, potem balans długości w Tasku 7, więc suma tej kolumny [1657] nie jest unią. Unię po [arkusz, wiersz] dla całego planu policzono niezależnie i wynosi dokładnie 1459 — to liczba w wierszu „Razem".)
+(Kolumna „unikalnych pytań" liczy wiersze dotknięte danym sygnałem osobno dla każdego wiersza tabeli — jedno pytanie mogło zebrać poprawki z kilku tasków, np. najpierw nawias w Tasku 5, potem balans długości w Tasku 7, więc suma tej kolumny [1676] nie jest unią. Unię po [arkusz, wiersz] dla całego planu policzono niezależnie i wynosi dokładnie 1467 — to liczba w wierszu „Razem". 11 z 19 wierszy mikro-rundy „lub" pokrywa się z wierszami dotkniętymi wcześniej przez Task 7 — stąd przyrost unii to tylko +8, nie +19.)
 
 Liczba pytań w quizie nie zmieniła się (3355) — plan „detells" nie wykluczał ani nie dodawał pytań, wyłącznie redagował istniejącą treść.
 
 ### Cele akceptacyjne — wynik końcowego pomiaru
 
-Pomiar: `python3 scripts/validation/measure_tells.py data/neuro_questions.xlsx docs/validation/detells/final.json`
+Pomiar po głównym planie (Taski 1–7): `python3 scripts/validation/measure_tells.py data/neuro_questions.xlsx docs/validation/detells/final.json`
 
-| Metryka | Baseline | Cel | Wynik | Status |
-|---|---|---|---|---|
-| odniesienia do rycin (wszystkie pola) | 321 | 0 | 0 | PASS |
-| nawias tylko-w-poprawnej | 359 | ≤ 36 | 8 | PASS |
-| koniunkcja tylko-w-poprawnej | 383 | ≤ 40 | 25 | PASS |
-| przecinek tylko-w-poprawnej | 93 | ≤ 10 | 9 | PASS |
-| kategoryczne w ≥2 błędnych | 99 | ≤ 10 | 3 | PASS |
-| poprawna ≥1,5× najdłuższa | 855 | ≤ 170 (5%) | 50 | PASS |
-| poprawna najdłuższa (unikatowo) | 54,5% | ≤ 35% | **35,8%** | **PRAWIE (0,8 pp powyżej celu)** |
-| poprawna najkrótsza — strażnik regresji | 8,5% (silnie 1,5%) | ≤ 12% (silnie ≤ 3%) | 11,7% (silnie 2,5%) | PASS |
+| Metryka | Baseline | Cel | Wynik (po Tasku 7) | Wynik (po mikro-rundzie „lub") | Status |
+|---|---|---|---|---|---|
+| odniesienia do rycin (wszystkie pola) | 321 | 0 | 0 | 0 | PASS |
+| nawias tylko-w-poprawnej | 359 | ≤ 36 | 8 | 8 | PASS |
+| koniunkcja tylko-w-poprawnej | 383 | ≤ 40 | 25 | 29 | PASS |
+| przecinek tylko-w-poprawnej | 93 | ≤ 10 | 9 | 10 | PASS (na granicy celu) |
+| kategoryczne w ≥2 błędnych | 99 | ≤ 10 | 3 | 3 | PASS |
+| poprawna ≥1,5× najdłuższa | 855 | ≤ 170 (5%) | 50 | 49 | PASS |
+| poprawna najdłuższa (unikatowo) | 54,5% | ≤ 35% | 35,8% | **35,5%** | **PRAWIE (0,5 pp powyżej celu)** |
+| poprawna najkrótsza — strażnik regresji | 8,5% (silnie 1,5%) | ≤ 12% (silnie ≤ 3%) | 11,7% (silnie 2,5%) | 11,7% (silnie 2,5%) | PASS |
 
-**Decyzja o pozostawieniu odstępstwa (35,8% zamiast ≤35%).** Wszystkie SILNE wyróżniki (nawias, koniunkcja, przecinek, kategoryczność, długość ≥1,5×) spadły o ≥90% względem baseline, a unia wszystkich wyróżników razem — 1182 pytania na starcie — skurczyła się do 70 (2,1%). Resztkowy sygnał „poprawna najdłuższa" nie znika, bo część poprawnych odpowiedzi jest z natury pełną nazwą struktury anatomicznej, której nie da się skrócić bez utraty jednoznaczności (patrz przykład w dzienniku dla `PLCI-10` — rozbudowano dystraktor, bo skrócenie poprawnej odpowiedzi zepsułoby pytanie). Domykająca mini-tura (91 pytań, próg selekcji: poprawna ≥1,4× drugiej najdłuższej) zredukowała ten wyróżnik z 37,0% do 35,8%, ale próg jednostkowego ryzyka treściowego (przebudowa dystraktora zamiast go po prostu skrócić) rósł z każdą kolejną turą, a przewaga poprawnej nad drugą najdłuższą w pozostałych 1202 pytaniach jest już < 1,4× (czyli poniżej progu, którym w ogóle kwalifikowano pytania do edycji) — dalsze iteracje to malejące zyski przy rosnącym ryzyku zepsucia treści. Kontroler zaakceptował odstępstwo jako świadomy kompromis, nie jako przeoczenie.
+Mikro-runda „lub" (opisana w sekcji `token_ratios` niżej) lekko podniosła koniunkcję i przecinek jako efekt uboczny — część z 19 naprawionych wierszy zamieniła „lub" na „i" albo dopisała „lub" do dystraktora ze zdaniem zawierającym już przecinek. Przecinek tylko-w-poprawnej wylądował dokładnie na granicy celu (10 = ≤10), reszta zostaje bezpiecznie w normie; żaden formalny cel nie przeszedł z PASS na FAIL.
+
+**Decyzja o pozostawieniu odstępstwa (35,5% zamiast ≤35%).** Wszystkie SILNE wyróżniki (nawias, koniunkcja, przecinek, kategoryczność, długość ≥1,5×) spadły o ≥90% względem baseline, a unia wszystkich wyróżników razem — 1182 pytania na starcie — skurczyła się do 74 (2,2%; mikro-runda „lub" dodała netto 4 pytania do unii przez efekt uboczny opisany wyżej, mimo że sama zredukowała „poprawną najdłuższą"). Resztkowy sygnał „poprawna najdłuższa" nie znika, bo część poprawnych odpowiedzi jest z natury pełną nazwą struktury anatomicznej, której nie da się skrócić bez utraty jednoznaczności (patrz przykład w dzienniku dla `PLCI-10` — rozbudowano dystraktor, bo skrócenie poprawnej odpowiedzi zepsułoby pytanie). Domykająca mini-tura Tasku 7 (91 pytań, próg selekcji: poprawna ≥1,4× drugiej najdłuższej) zredukowała ten wyróżnik z 37,0% do 35,8%; mikro-runda „lub" zdjęła go dalej do 35,5% jako efekt uboczny (5 z 19 napraw skróciły/przeformułowały poprawną opcję). Próg jednostkowego ryzyka treściowego (przebudowa dystraktora zamiast go po prostu skrócić) rośnie z każdą kolejną turą, a przewaga poprawnej nad drugą najdłuższą w pozostałych ~1190 pytaniach jest już < 1,4× (czyli poniżej progu, którym w ogóle kwalifikowano pytania do edycji w Tasku 7) — dalsze iteracje to malejące zyski przy rosnącym ryzyku zepsucia treści. Kontroler zaakceptował odstępstwo jako świadomy kompromis, nie jako przeoczenie.
 
 ### `token_ratios` — przegląd tokenów stylistycznych
 
-Dodatkowe kryterium Tasku 8 (poza formalną tabelą wyżej) zakładało, że token „lub" zniknie z listy `token_ratios` albo spadnie poniżej ratio 2. **Nie spełnione**: „lub" ma ratio 25,0 (25 wystąpień w poprawnych opcjach vs 3 w błędnych), spadek z baseline 64,0 jest efektem ubocznym prac nad innymi wyróżnikami, nie celowej interwencji — żaden task planu nie mierzył ani nie korygował tego tokenu wprost (detektor koniunkcji z Tasku 1 łapie tylko „i"/„oraz", nie „lub"). Przegląd 25 poprawnych opcji zawierających „lub" pokazuje, że w większości przypadków „lub" opisuje realną alternatywę anatomiczną (np. „Zatoru lub zakrzepu", „Na poziomie kręgu L1 lub L2", „Owalny lub okrągły") — treściowo uzasadnione, ale statystycznie nadal silny wyróżnik: ktoś zgadujący opcję zawierającą „lub" trafi nieproporcjonalnie często. To realna luka pozostawiona przez ten plan, nie fałszywy alarm — warto ją domknąć osobnym mini-przebiegiem tego samego wzorca co Task 5/6, jeśli będzie kolejna tura.
+Dodatkowe kryterium Tasku 8 (poza formalną tabelą wyżej) zakładało, że token „lub" zniknie z listy `token_ratios` albo spadnie poniżej ratio 2. Pierwszy pomiar po Tasku 7 pokazał, że tak się nie stało (ratio 25,0 — 25 wystąpień w poprawnych opcjach vs 3 w błędnych) i że żaden task planu nie mierzył ani nie korygował tego tokenu wprost (detektor koniunkcji z Tasku 1 łapie tylko „i"/„oraz", nie „lub") — luka opisana tu jako „pozostawiona" trafiła od razu do osobnej mikro-rundy poprawek (ten sam mechanizm co Task 5/6: edytor + kontroler na dossier, bez rozjemcy — ryzyko było niskie).
 
-Pozostałe pozycje listy: „bocznym" (3,6), „hipokampa" (3,5), „bruzdy" (3,2), „między" (2,9), „części" (2,2), „tylnej" (2,1), „blaszki" (2,0) — próbka 3 przykładów na token potwierdza charakter merytoryczny/anatomiczny (terminy topograficzne skupione tematycznie: boczność, hipokamp, bruzdy, relacje przestrzenne „między X a Y"), nie stylistyczny. Wyjątek: „tak" (2,5, 49 wystąpień w poprawnych vs 60 w błędnych) pochodzi z pytań tak/nie („Czy X posiada Y?") — to nie jest tell długości czy stylu, tylko nierówny rozkład odpowiedzi twierdzących/przeczących w tej podgrupie pytań; poza zakresem tego planu (żaden task go nie adresował), ale wart odnotowania jako osobna kategoria ryzyka na przyszłość.
+**Wynik mikro-rundy 1.** Selekcja (`scripts/validation/prepare_lubpass.py`, wyróżnik „lub_only" — dokładnie ten sam wzorzec co `only_correct()` dla pozostałych telli) dała 25 kandydatów: pytania, w których „lub" występuje wyłącznie w poprawnej opcji. Edytor zaproponował 25 poprawek w dwóch stylach: dopisanie „lub X" do dystraktora (14 przypadków — rozcieńcza sygnał bez ruszania poprawnej odpowiedzi) albo zamianę „lub" na „i"/przeformułowanie samej poprawnej opcji (11 przypadków, w tym 5 przyjętych). Kontroler zweryfikował każdą zmianę względem dossier: 19 CZYSTO, 6 ZASTRZEŻENIE. Wszystkie 6 zastrzeżeń dotyczyły tego samego ryzyka: zamiana „lub" (alternatywa — którykolwiek z czynników) na „i" (koniunkcja — oba naraz) w poprawnej opcji, gdzie albo dossier nie zawierał fragmentu pozwalającego to zweryfikować, albo (w jednym przypadku, `15.Znaczenie kliniczne` w.11) wprost zaprzeczał: źródło opisuje to zwężenie drobnych naczyń tętniczych jako reakcję na silne emocje albo na zimno — dwa niezależne, rozłączne wyzwalacze tego samego zjawiska, nie stan wymagający ich jednoczesnego wystąpienia (str. 147), więc zamiana na koniunkcję zmieniłaby sens. Te 6 wierszy zostawiono w stanie sprzed poprawki (`docs/validation/detells/dropped-lub.json`) — status quo, nie regresja. 19 zweryfikowanych poprawek naniesiono (`docs/validation/detells/props-lub-ok.json` → applier, 0 odrzuceń).
+
+**Rezultat**: token „lub" — correct 25→20, wrong 3→17, ratio **25,0 → 3,5** (nadal na liście `token_ratios`, próg `cc≥20` nie został przekroczony w dół — surowe liczby potwierdzone niezależnym skryptem regex poza `measure_tells.py`). Wyróżnik „lub_only" (tylko poprawna zawiera „lub") spadł z 25 do dokładnie 6 — czyli do liczby wierszy pozostawionych przez kontrolera ze względów treściowych, nie z braku starań. Domknięcie pozostałych 6 wymagałoby innej strategii niż „lub→i" (np. rozbudowa dystraktora zamiast przeformułowania poprawnej), co zostawiono na ewentualną kolejną rundę.
+
+Pozostałe pozycje listy po mikro-rundzie (niezmienione względem pomiaru sprzed niej): „bocznym" (3,6), „lub" (3,5, opisane wyżej), „hipokampa" (3,5), „bruzdy" (3,2), „między" (2,9), „tak" (2,5), „części" (2,2), „tylnej" (2,1), „blaszki" (2,0) — próbka 3 przykładów na token potwierdza charakter merytoryczny/anatomiczny (terminy topograficzne skupione tematycznie: boczność, hipokamp, bruzdy, relacje przestrzenne „między X a Y"), nie stylistyczny. Wyjątek: „tak" (2,5, 49 wystąpień w poprawnych vs 60 w błędnych) pochodzi z pytań tak/nie („Czy X posiada Y?") — to nie jest tell długości czy stylu, tylko nierówny rozkład odpowiedzi twierdzących/przeczących w tej podgrupie pytań; poza zakresem tego planu (żaden task go nie adresował), ale wart odnotowania jako osobna kategoria ryzyka na przyszłość.
 
 ### Testy i sanity-check aplikacji
 
-`npm run data:generate` → `OK: 3355 pytań, 18 działów, 106 tematów` (bez ostrzeżeń o cytowaniu liter, bez błędów). `python3 -m pytest scripts/ -v` → 13 passed. `npm test` (vitest) → 12 passed, zgodnie z baseline sprzed planu. `npm run dev` na porcie 8080 odpowiedział HTTP 200; `public/data/sections/9.json` i `10.json` po regeneracji nie zawierają już żadnego dopasowania „image" (wcześniej to właśnie te dwa działy niosły odniesienia do rycin); próbka 5 losowych pytań z różnych działów ma po 4 opcje, niepuste i parami różne.
+`npm run data:generate` → `OK: 3355 pytań, 18 działów, 106 tematów` (bez ostrzeżeń o cytowaniu liter, bez błędów). `python3 -m pytest scripts/ -v` → 13 passed. `npm test` (vitest) → 12 passed, zgodnie z baseline sprzed planu. `npm run dev` na porcie 8080 odpowiedział HTTP 200; `public/data/sections/9.json` i `10.json` po regeneracji nie zawierają już żadnego dopasowania „image" (wcześniej to właśnie te dwa działy niosły odniesienia do rycin); próbka 5 losowych pytań z różnych działów ma po 4 opcje, niepuste i parami różne. **Uwaga**: powyższa regeneracja i testy dotyczą stanu xlsx sprzed mikro-rundy „lub" (19 wierszy). Commit mikro-rundy 1 celowo nie zawiera `npm run data:generate` — `public/data/` pozostaje o jedną rewizję xlsx w tyle do czasu kolejnej regeneracji (do zrobienia razem z ewentualną mikro-rundą 2 albo osobno, przed wypchnięciem gałęzi).
 
 ### Czego nauczyła ta sesja
 
@@ -160,3 +168,5 @@ Pozostałe pozycje listy: „bocznym" (3,6), „hipokampa" (3,5), „bruzdy" (3,
 **Twardy próg selekcji ogranicza też wielkość poprawki.** Mini-tura Tasku 7 wzięła tylko pytania z przewagą długości ≥1,4× — świadomie zostawiła resztkę tuż poniżej progu, bo dalsze schodzenie z progiem oznaczało edycję pytań, gdzie poprawna odpowiedź jest z natury pełną nazwą i skrócenie zepsułoby jednoznaczność.
 
 **Baseline i pomiar końcowy muszą liczyć identycznie.** Cała tabela akceptacyjna działa tylko dlatego, że `measure_tells.py` się nie zmienił między Taskiem 1 a Taskiem 8 — każda zmiana definicji w trakcie planu unieważniłaby porównanie.
+
+**Zamiana alternatywy na koniunkcję to osobna kategoria ryzyka, nie kosmetyka.** Wszystkie 6 zastrzeżeń kontrolera w mikro-rundzie „lub" miały jedną wspólną przyczynę: „X lub Y" (którykolwiek z czynników) przeformułowane na „X i Y" (oba naraz) subtelnie zmienia twierdzenie, a dossier rzadko ma fragment wystarczająco dosłowny, by to zweryfikować w jedną albo drugą stronę. Bezpieczniejsza domyślna strategia (14 z 19 przyjętych poprawek) to dopisanie „lub" do dystraktora, nie ruszanie poprawnej opcji wcale.
